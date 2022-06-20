@@ -7,8 +7,6 @@ const User = require("../models/userModel")
 const registerUser = asyncHandler (async (req, res) => {
   const { name, email, password } = req.body;
 
-  // console.log(req.body);
-
   if (!name || !email || !password) {
     res.status(400)
     throw new Error("Please include all fields");
@@ -60,6 +58,15 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+const getMe = asyncHandler (async (req, res) => {
+  const user = {
+    id: req.user._id,
+    email: req.user.email,
+    name: req.user.name
+  }
+  res.status(200).json(user)
+})
+
 const generateToken = (id) => {
   return jwt.sign({id}, process.env.JWT_SECRET, {
     expiresIn: "30d"
@@ -69,4 +76,5 @@ const generateToken = (id) => {
 module.exports = {
   registerUser,
   loginUser,
+  getMe,
 };
