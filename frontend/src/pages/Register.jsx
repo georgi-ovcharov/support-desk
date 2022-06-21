@@ -3,7 +3,7 @@ import { FaUser } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { register, reset } from "../features/auth/authSlice";
-import { useNavigate } from "react-router-dom" 
+import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 
 function Register() {
@@ -22,19 +22,19 @@ function Register() {
     (state) => state.auth
   );
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if(isError) {
-      toast.error(message)
-    } 
-
-    if(isSuccess || user) {
-      navigate("/")
+    if (isError) {
+      toast.error(message);
     }
 
-    dispatch(reset())
-  }, [isError, isSuccess, user, message, navigate, dispatch])
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [isError, isSuccess, user, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -59,7 +59,7 @@ function Register() {
   };
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   return (
@@ -67,8 +67,8 @@ function Register() {
       <section className="heading">
         <h1>
           <FaUser /> Register
-          <p>Please create an account</p>
         </h1>
+        <p>Please create an account</p>
       </section>
       <section className="form">
         <form onSubmit={onSubmit}>
