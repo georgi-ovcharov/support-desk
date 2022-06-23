@@ -27,6 +27,8 @@ export const getNotes = createAsyncThunk(
   }
 );
 
+
+
 export const noteSlice = createSlice({
   name: "note",
   initialState,
